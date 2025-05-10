@@ -31,7 +31,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->string('password')),
         ]);
 
-        $user["token"] = $user->createToken('default')->plainTextToken;
+        $user["token"] = $user->createToken('token')->plainTextToken;
 
         event(new Registered($user));
 
@@ -39,7 +39,6 @@ class RegisteredUserController extends Controller
 
         return response()->json([
             'user' => $user,
-            'message' => 'User created successfully',
         ]);
     }
 }
