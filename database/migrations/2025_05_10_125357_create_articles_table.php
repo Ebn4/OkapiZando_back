@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->string('details');
-            $table->string('color');
+            $table->text('description')->nullable;
+            $table->longText('details')->nullable ;
+            $table->string('color')->nullable;
             $table->integer('stock');
             $table->longText('image')->nullable();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
