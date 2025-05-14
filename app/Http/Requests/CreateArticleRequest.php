@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException ; 
-use Illuminate\Contracts\Validation\validator ; 
+use Illuminate\Http\Exceptions\HttpResponseException ;
+use Illuminate\Contracts\Validation\validator ;
 
 class CreateArticleRequest extends FormRequest
 {
@@ -25,23 +25,21 @@ class CreateArticleRequest extends FormRequest
     {
         return [
             'title' => ['required' , 'min : 2' , 'max : 255 '],
-            'description' => ['required', 'string'] , 
+            'description' => ['required', 'string'] ,
             'details' => ['required', 'string'] ,
-            'color' => ['required'  , 'string'],  
+            'color' => ['required'  , 'string'],
             'stock' => ['required' , 'integer' , 'min : 1'] ,
-            'image' => ['required' , 'string'] , 
-            'shop_id' => ['required', 'integer' , 'exists:users,id'] , 
+            'image' => ['required' , 'string'] ,
+            'shop_id' => ['required', 'integer' , 'exists:users,id'] ,
             'price' => ['required', 'numeric' ] , 
-
-
         ];
     }
 
     public function failedValidation(Validator $validator){
         throw new HttpResponseException(response()->json([
-            'success' => false , 
-            'error' => true , 
-            'message' => 'Erreur de validation Article ' , 
+            'success' => false ,
+            'error' => true ,
+            'message' => 'Erreur de validation Article ' ,
             'errorsList' => $validator->errors() ,
         ]))  ;
     }
